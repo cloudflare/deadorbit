@@ -50,7 +50,7 @@ describe('Stack Parser', function() {
     var stack = stackParser(CapturedExceptions.SAFARI_8_EVAL);
     expect(stack).is.ok();
     expect(stack).has.size(3);
-    assertStackFrame(stack[0], ['<eval>']);
+    expect(stack[0].isEval).is.true('expected isEval');
     assertStackFrame(stack[1], ['foo', undefined, 'http://path/to/file.js', 58, 21]);
     assertStackFrame(stack[2], ['bar', undefined, 'http://path/to/file.js', 109, 91]);
   });
@@ -93,7 +93,7 @@ describe('Stack Parser', function() {
     var stack = stackParser(CapturedExceptions.CHROME_41_EVAL);
     expect(stack).is.ok();
     expect(stack).has.size(3);
-    assertStackFrame(stack[0], ['<eval>']);
+    expect(stack[0].isEval).is.true('expected isEval');
     assertStackFrame(stack[1], ['foo', undefined, 'http://path/to/file.js', 12, 3]);
     assertStackFrame(stack[2], ['bar', undefined, 'http://path/to/file.js', 63, 1]);
   });
@@ -129,7 +129,7 @@ describe('Stack Parser', function() {
     var stack = stackParser(CapturedExceptions.IE_11_EVAL);
     expect(stack).is.ok();
     expect(stack).has.size(3);
-    assertStackFrame(stack[0], ['<eval>']);
+    expect(stack[0].isEval).is.true('expected isEval');
     assertStackFrame(stack[1], ['foo', undefined, 'http://path/to/file.js', 58, 17]);
     assertStackFrame(stack[2], ['bar', undefined, 'http://path/to/file.js', 109, 1]);
   });
