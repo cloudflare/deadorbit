@@ -1,5 +1,5 @@
 'use strict';
-var forEach = require('foreach');
+var forEach = require('lodash/forEach');
 
 function CompositeDriver(drivers) {
   this.drivers = drivers;

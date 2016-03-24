@@ -1,6 +1,6 @@
 'use strict';
 var debug = require('debug');
-var forEach = require('foreach');
+var forEach = require('lodash/forEach');
 
 function DebugDriver(options) {
   options = options || {};

@@ -1,6 +1,6 @@
 'use strict';
-var map = require('array-map');
-var filter = require('array-filter');
+var map = require('lodash/map');
+var filter = require('lodash/filter');
 
 function createRegExp(patterns) {
   if (!patterns.length) {

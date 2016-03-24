@@ -3,8 +3,8 @@ var uuid = require('uuid');
 var toISOString = require('../lib/toISOString');
 var xhr = require('../lib/xhr');
 var defined = require('defined');
-var map = require('array-map');
-var reduce = require('array-reduce');
+var map = require('lodash/map');
+var reduce = require('lodash/reduce');
 var version = '1.0.0';
 
 function SentryDriver(options) {

@@ -5,13 +5,10 @@
   "author": "Terin Stock <terinjokes@gmail.com> (https://terinstock.com/)",
   "bugs": "https://github.com/cloudflare/deadorbit/issues",
   "dependencies": {
-    "array-filter": ">=0.2.0 <0.3.0-0",
-    "array-map": "0.0.0",
-    "array-reduce": "0.0.0",
     "debug": ">=2.1.1 <3.0.0-0",
     "defined": "0.0.0",
-    "foreach": ">=2.0.5 <3.0.0-0",
     "httpplease": ">=0.15.2 <0.16.0-0",
+    "lodash": "^4.6.1",
     "stack-generator": ">=1.0.2 <2.0.0-0",
     "stackframe": ">=0.2.1 <0.3.0-0",
     "uuid": ">=2.0.1 <3.0.0-0"
