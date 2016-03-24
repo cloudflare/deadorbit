@@ -2,8 +2,8 @@
 var expect = require('assume');
 var BrowserProcessor = require('../processors/browserEnv');
 
-describe('Browser Env Processor', function() {
-  it('should add browser environment to error object', function() {
+describe('Browser Env Processor', function () {
+  it('should add browser environment to error object', function () {
     var browserProcessor = new BrowserProcessor();
     var errInfo = {
       error: true

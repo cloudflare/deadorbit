@@ -6,14 +6,14 @@ var sinon = require('sinon');
 
 var reLog = /^(%c)?deadorbit.driver.debug:log (%c)?%s: %s(%c)? \+\dms$/;
 
-describe('Debug Driver', function() {
-  it('should set default namespace', function() {
+describe('Debug Driver', function () {
+  it('should set default namespace', function () {
     var debugDriver = new DebugDriver();
 
     expect(debugDriver.debug.namespace).equals('deadorbit.driver.debug:log');
   });
 
-  it('should set custom namespace', function() {
+  it('should set custom namespace', function () {
     var namespace = 'deadorbit.custom.namespace:silly';
     var debugDriver = new DebugDriver({
       namespace: namespace
@@ -22,7 +22,7 @@ describe('Debug Driver', function() {
     expect(debugDriver.debug.namespace).equals(namespace);
   });
 
-  it('should parse errors and create log line', function() {
+  it('should parse errors and create log line', function () {
     // Enable the namespace for `debug` logging.
     debug.enable('deadorbit.driver.debug:log');
 
@@ -38,7 +38,7 @@ describe('Debug Driver', function() {
         fileName: 'decode-engram.js',
         lineNumber: '34',
         columnNumber: '5'
-        }, {
+      }, {
         functionName: 'decode',
         fileName: 'cryptarch.js',
         lineNumber: '89',
@@ -68,7 +68,7 @@ describe('Debug Driver', function() {
     }
   });
 
-  it('should parse errors and create log line without columnNumber', function() {
+  it('should parse errors and create log line without columnNumber', function () {
     // Enable the namespace for `debug` logging.
     debug.enable('deadorbit.driver.debug:log');
 
@@ -83,7 +83,7 @@ describe('Debug Driver', function() {
         functionName: 'decodeEngram',
         fileName: 'decode-engram.js',
         lineNumber: '34'
-        }, {
+      }, {
         functionName: 'decode',
         fileName: 'cryptarch.js',
         lineNumber: '89'
@@ -112,7 +112,7 @@ describe('Debug Driver', function() {
     }
   });
 
-  it('should parse errors and create log line without lineNumber', function() {
+  it('should parse errors and create log line without lineNumber', function () {
     // Enable the namespace for `debug` logging.
     debug.enable('deadorbit.driver.debug:log');
 
@@ -126,7 +126,7 @@ describe('Debug Driver', function() {
       stacks: [{
         functionName: 'decodeEngram',
         fileName: 'decode-engram.js'
-        }, {
+      }, {
         functionName: 'decode',
         fileName: 'cryptarch.js'
       }]
@@ -154,7 +154,7 @@ describe('Debug Driver', function() {
     }
   });
 
-  it('should parse errors and create log line without fileName', function() {
+  it('should parse errors and create log line without fileName', function () {
     // Enable the namespace for `debug` logging.
     debug.enable('deadorbit.driver.debug:log');
 
@@ -167,7 +167,7 @@ describe('Debug Driver', function() {
       type: 'RahoolError',
       stacks: [{
         functionName: 'decodeEngram'
-        }, {
+      }, {
         functionName: 'decode'
       }]
     });
@@ -194,7 +194,7 @@ describe('Debug Driver', function() {
     }
   });
 
-  it('should parse errors and create log line without functionName', function() {
+  it('should parse errors and create log line without functionName', function () {
     // Enable the namespace for `debug` logging.
     debug.enable('deadorbit.driver.debug:log');
 

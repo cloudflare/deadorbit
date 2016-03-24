@@ -5,32 +5,40 @@
   "author": "Terin Stock <terinjokes@gmail.com> (https://terinstock.com/)",
   "bugs": "https://github.com/cloudflare/deadorbit/issues",
   "dependencies": {
-    "debug": ">=2.1.1 <3.0.0-0",
-    "defined": "0.0.0",
-    "httpplease": ">=0.15.2 <0.16.0-0",
+    "debug": "^2.1.1",
+    "defined": "^1.0.0",
+    "httpplease": "^0.16.4",
     "lodash": "^4.6.1",
-    "stack-generator": ">=1.0.2 <2.0.0-0",
+    "stack-generator": "^1.0.2",
     "stackframe": "^1.0.2",
-    "uuid": ">=2.0.1 <3.0.0-0"
+    "uuid": "^2.0.1"
   },
   "devDependencies": {
     "assume": "^1.4.1",
-    "browserify-istanbul": ">=0.1.2 <0.2.0-0",
-    "eslint": ">=0.11.0 <0.12.0-0",
-    "jsfmt": ">=0.4.0 <0.5.0-0",
-    "karma": ">=0.12.28 <0.13.0-0",
-    "karma-beep-reporter": ">=0.1.4 <0.2.0-0",
-    "karma-browserify": ">=2.0.0 <3.0.0-0",
-    "karma-chrome-launcher": ">=0.1.7 <0.2.0-0",
-    "karma-coverage": "0.2.6",
-    "karma-mocha": ">=0.1.10 <0.2.0-0",
-    "karma-mocha-reporter": ">=0.3.1 <0.4.0-0",
-    "karma-safari-launcher": ">=0.1.1 <0.2.0-0",
-    "karma-sauce-launcher": ">=0.2.10 <0.3.0-0",
-    "lodash": ">=2.4.1 <3.0.0-0",
-    "minimist": ">=1.1.0 <2.0.0-0",
-    "sinon": ">=1.12.2 <2.0.0-0"
+    "browserify": "^13.0.0",
+    "browserify-istanbul": "^2.0.0",
+    "eslint": "^2.4.0",
+    "eslint-config-xo-space": "^0.11.0",
+    "istanbul": "^0.4.2",
+    "karma": "^0.13.22",
+    "karma-beep-reporter": "^0.1.4",
+    "karma-browserify": "^5.0.3",
+    "karma-chrome-launcher": "^0.2.3",
+    "karma-coverage": "^0.5.5",
+    "karma-mocha": "^0.2.2",
+    "karma-mocha-reporter": "^2.0.0",
+    "karma-safari-launcher": "^0.1.1",
+    "karma-sauce-launcher": "^0.3.1",
+    "minimist": "^1.1.0",
+    "mocha": "^2.4.5",
+    "sinon": "^1.12.2",
+    "watchify": "^3.7.0"
   },
+  "files": [
+      "index.js",
+      "drivers",
+      "processors"
+  ],
   "homepage": "https://cloudflare.github.com/deadorbit",
   "keywords": [
     "raven",
@@ -45,7 +53,9 @@
   "repository": "https://github.com/cloudflare/deadorbit",
   "scripts": {
     "test": "./node_modules/karma/bin/karma start",
-    "lint": "eslint index.js lib drivers processors tests",
-    "format": "jsfmt -w index.js lib drivers processors tests"
+    "lint": "eslint index.js lib drivers processors tests"
+  },
+  "eslintConfig": {
+      "extends": "xo-space"
   }
 }

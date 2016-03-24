@@ -7,8 +7,8 @@ function SampleReporter() {
   this.report = sinon.spy();
 }
 
-describe('Composite Driver', function() {
-  it('should forward reports to component drivers', function() {
+describe('Composite Driver', function () {
+  it('should forward reports to component drivers', function () {
     var sampleReporter1 = new SampleReporter();
     var sampleReporter2 = new SampleReporter();
     var composite = new CompositeDriver([sampleReporter1, sampleReporter2]);

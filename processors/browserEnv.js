@@ -3,7 +3,7 @@
 function BrowserProcessor() {
 }
 
-BrowserProcessor.prototype.process = function(errInfo) {
+BrowserProcessor.prototype.process = function (errInfo) {
   errInfo.environment = {
     url: global.location.href,
     headers: {

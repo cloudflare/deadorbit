@@ -10,7 +10,7 @@ function DeadOrbit(driver, processor) {
 
 var DeadOrbitPrototype = DeadOrbit.prototype;
 
-DeadOrbitPrototype.report = function(err, options) {
+DeadOrbitPrototype.report = function (err, options) {
   if (!err || (!isError(err) && !err.message)) {
     throw new Error('Error instance or error stub required');
   }
@@ -20,7 +20,7 @@ DeadOrbitPrototype.report = function(err, options) {
 
   if (isError(err)) {
     /* istanbul ignore else */
-    if ( /* istanbul ignore else */ err.stack || err['opera#sourceloc']) {
+    if (/* istanbul ignore else */ err.stack || err['opera#sourceloc']) {
       errInfo.stacks = stackParser(err);
     } else {
       errInfo.stacks = stackGenerator.backtrace();

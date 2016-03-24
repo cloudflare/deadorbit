@@ -5,8 +5,8 @@ function CompositeDriver(drivers) {
   this.drivers = drivers;
 }
 
-CompositeDriver.prototype.report = function(errInfo) {
-  forEach(this.drivers, function(driver) {
+CompositeDriver.prototype.report = function (errInfo) {
+  forEach(this.drivers, function (driver) {
     driver.report(errInfo);
   });
 };
