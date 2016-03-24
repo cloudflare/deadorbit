@@ -8,6 +8,7 @@ var args = minimist(process.argv.slice(2), {
   string: ['env', 'build-branch', 'build-number', 'suace-username', 'sauce-key'],
   'default': {
     env: process.env.NODE_ENV,
+    'ci': process.env.CI === "true",
     'build-branch': process.env.BUILD_BRANCH,
     'build-number': process.env.BUILD_NUMBER,
     'sauce-username': process.env.SAUCE_USERNAME,
@@ -15,27 +16,30 @@ var args = minimist(process.argv.slice(2), {
   }
 });
 
-args.istanbul = defined(args.istanbul, args.env !== 'CI');
-args['sauce-labs'] = defined(args['sauce-labs'], args.env === 'CI');
+args.istanbul = defined(args.istanbul, !args.ci);
+args['sauce-labs'] = defined(args['sauce-labs'], args.ci);
 
 // Overridable arguments are denoted below. Other arguments can be found in the
 // [Karma configuration](http://karma-runner.github.io/0.12/config/configuration-file.html)
 
-['chrome', 'firefox', 'safari',
-'iphone', 'ipad', 'android'].forEach(function(browser) {
+['chrome', 'firefox', 'MicrosoftEdge'].forEach(function(browser) {
   customLaunchers['sl_' + browser] = {
     base: 'SauceLabs',
     browserName: browser
   };
 });
 
-[9, 10, 11].forEach(function(version) {
-  customLaunchers['sl_ie_' + version] = {
-    base: 'SauceLabs',
-    browserName: 'internet explorer',
-    version: version
-  };
-});
+customLaunchers.sl_safari = {
+  base: 'SauceLabs',
+  browserName: 'safari',
+  platform: 'OS X 10.11'
+};
+
+customLaunchers.sl_ie_11 = {
+  base: 'SauceLabs',
+  browserName: 'internet explorer',
+  version: 11
+};
 
 var reporters = ['mocha', 'beep'];
 
