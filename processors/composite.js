@@ -4,7 +4,7 @@ function CompositeProcessor(processors) {
   this.processors = processors;
 }
 
-CompositeProcessor.prototype.process = function(errInfo) {
+CompositeProcessor.prototype.process = function (errInfo) {
   var index = -1;
   var length = this.processors.length;
 

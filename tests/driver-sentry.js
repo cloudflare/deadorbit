@@ -6,23 +6,23 @@ var sinon = require('sinon');
 // This is a hack to ensure `httpplease` in within SentryDriver gets the Sinon XHR.
 var requests = [];
 var xhr = sinon.useFakeXMLHttpRequest();
-xhr.onCreate = function(request) {
+xhr.onCreate = function (request) {
   requests.push(request);
 };
 
 var expect = require('assume');
 var SentryDriver = require('../drivers/sentry');
 
-describe('Sentry Driver', function() {
-  afterEach(function() {
+describe('Sentry Driver', function () {
+  afterEach(function () {
     requests = [];
   });
 
-  after(function() {
+  after(function () {
     xhr.restore();
   });
 
-  it('should compute the API endpoint correctly', function() {
+  it('should compute the API endpoint correctly', function () {
     var sentryDriver = new SentryDriver({
       server: 'http://sentry.example.com',
       project: '25',
@@ -32,7 +32,7 @@ describe('Sentry Driver', function() {
     expect(sentryDriver.server).equals('http://sentry.example.com/api/25/store/');
   });
 
-  it('should compute a valid authorization header', function() {
+  it('should compute a valid authorization header', function () {
     var sentryDriver = new SentryDriver({
       server: 'http://sentry.example.com',
       project: '25',
@@ -43,7 +43,7 @@ describe('Sentry Driver', function() {
     expect(sentryDriver.getAuthHeader(date)).equals('Sentry sentry_version=4, sentry_timestamp=1420070400000, sentry_key=abcdef, sentry_client=deadorbit/1.0.0');
   });
 
-  it('should computer a vald authorization header with secret', function() {
+  it('should computer a vald authorization header with secret', function () {
     var sentryDriver = new SentryDriver({
       server: 'http://sentry.example.com',
       project: '25',
@@ -55,7 +55,7 @@ describe('Sentry Driver', function() {
     expect(sentryDriver.getAuthHeader(date)).equals('Sentry sentry_version=4, sentry_timestamp=1420070400000, sentry_key=abcdef, sentry_client=deadorbit/1.0.0, sentry_secret=p455w0rd');
   });
 
-  it('should report the error to the Sentry server', function() {
+  it('should report the error to the Sentry server', function () {
     var sentryDriver = new SentryDriver({
       server: 'http://sentry.example.com',
       project: '25',
@@ -70,7 +70,7 @@ describe('Sentry Driver', function() {
         fileName: 'decode-engram.js',
         lineNumber: '34',
         columnNumber: '5'
-        }, {
+      }, {
         functionName: 'decode',
         fileName: 'cryptarch.js',
         lineNumber: '89',
@@ -119,7 +119,7 @@ describe('Sentry Driver', function() {
     expect(type).equals('application/json');
   });
 
-  it('should report the error to the Sentry server without stack info', function() {
+  it('should report the error to the Sentry server without stack info', function () {
     var sentryDriver = new SentryDriver({
       server: 'http://sentry.example.com',
       project: '25',
@@ -167,7 +167,7 @@ describe('Sentry Driver', function() {
     expect(type).equals('application/json');
   });
 
-  it('should report the error to the Sentry server with args', function() {
+  it('should report the error to the Sentry server with args', function () {
     var sentryDriver = new SentryDriver({
       server: 'http://sentry.example.com',
       project: '25',
@@ -183,7 +183,7 @@ describe('Sentry Driver', function() {
         lineNumber: '34',
         columnNumber: '5',
         args: ['decoherent']
-        }, {
+      }, {
         functionName: 'decode',
         fileName: 'cryptarch.js',
         lineNumber: '89',
@@ -227,7 +227,6 @@ describe('Sentry Driver', function() {
     expect(body.stacktrace.frames[1].lineno).equals('34');
     expect(body.stacktrace.frames[1].vars[0]).equals('decoherent');
 
-
     var headers = requests[0].requestHeaders;
 
     expect(headers['X-Sentry-Auth']).equals(sentryDriver.getAuthHeader(date));
@@ -236,7 +235,7 @@ describe('Sentry Driver', function() {
     expect(type).equals('application/json');
   });
 
-  it('should report the error to the Sentry server without stacks and error type', function() {
+  it('should report the error to the Sentry server without stacks and error type', function () {
     var sentryDriver = new SentryDriver({
       server: 'http://sentry.example.com',
       project: '25',
@@ -274,7 +273,7 @@ describe('Sentry Driver', function() {
     expect(type).equals('application/json');
   });
 
-  it('should report the error to the Sentry server with user and tags info', function() {
+  it('should report the error to the Sentry server with user and tags info', function () {
     var sentryDriver = new SentryDriver({
       server: 'http://sentry.example.com',
       project: '25',
@@ -289,7 +288,7 @@ describe('Sentry Driver', function() {
         fileName: 'decode-engram.js',
         lineNumber: '34',
         columnNumber: '5'
-        }, {
+      }, {
         functionName: 'decode',
         fileName: 'cryptarch.js',
         lineNumber: '89',

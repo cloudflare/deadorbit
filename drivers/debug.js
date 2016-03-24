@@ -1,6 +1,6 @@
 'use strict';
 var debug = require('debug');
-var forEach = require('foreach');
+var forEach = require('lodash/forEach');
 
 function DebugDriver(options) {
   options = options || {};
@@ -9,7 +9,7 @@ function DebugDriver(options) {
 
 function prettify(stacks) {
   var string = '\n';
-  forEach(stacks, function(stack) {
+  forEach(stacks, function (stack) {
     var functionName = stack.functionName;
     var fileName = stack.fileName;
     var lineNumber = stack.lineNumber;
@@ -42,7 +42,7 @@ function prettify(stacks) {
   return string;
 }
 
-DebugDriver.prototype.report = function(errInfo) {
+DebugDriver.prototype.report = function (errInfo) {
   this.debug('%s: %s', errInfo.type, errInfo.message, prettify(errInfo.stacks));
 };
 

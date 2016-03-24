@@ -7,15 +7,15 @@ function SampleReporter() {
   this.report = sinon.spy();
 }
 
-describe('deadorbit', function() {
-  it('should accept a Driver', function() {
+describe('deadorbit', function () {
+  it('should accept a Driver', function () {
     var sampleReporter = new SampleReporter();
     var deadOrbit = new DeadOrbit(sampleReporter);
 
     expect(deadOrbit.driver).equals(sampleReporter);
   });
 
-  it('should parse Error', function() {
+  it('should parse Error', function () {
     var sampleReporter = new SampleReporter();
     var deadOrbit = new DeadOrbit(sampleReporter);
 
@@ -33,7 +33,7 @@ describe('deadorbit', function() {
     expect(errInfo.stacks).is.above(0);
   });
 
-  it('should parse error stub', function() {
+  it('should parse error stub', function () {
     var sampleReporter = new SampleReporter();
     var deadOrbit = new DeadOrbit(sampleReporter);
 
@@ -60,11 +60,11 @@ describe('deadorbit', function() {
     expect(errInfo.stacks[0].columnNumber).equals(error.colNo);
   });
 
-  it('should throw if no error', function() {
+  it('should throw if no error', function () {
     var sampleReporter = new SampleReporter();
     var deadOrbit = new DeadOrbit(sampleReporter);
 
-    expect(function() {
+    expect(function () {
       deadOrbit.report();
     }).throws(/Error instance or error stub required/);
   });

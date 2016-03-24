@@ -2,10 +2,10 @@
 var expect = require('assume');
 var FilterProcessor = require('../processors/filter');
 
-describe('Filter Processor', function() {
+describe('Filter Processor', function () {
   var errInfo;
 
-  beforeEach(function() {
+  beforeEach(function () {
     errInfo = {
       message: 'Engram is an Ascendant Energy',
       type: 'RahoolError',
@@ -14,7 +14,7 @@ describe('Filter Processor', function() {
         fileName: 'decode-engram.js',
         lineNumber: '34',
         columnNumber: '5'
-        }, {
+      }, {
         functionName: 'decode',
         fileName: 'cryptarch.js',
         lineNumber: '89',
@@ -23,14 +23,14 @@ describe('Filter Processor', function() {
     };
   });
 
-  it('should not return false if no filters are provided', function() {
+  it('should not return false if no filters are provided', function () {
     var options = {};
     var filterProcessor = new FilterProcessor(options);
 
     expect(filterProcessor.process(errInfo)).is.not.false();
   });
 
-  it('should return false if ignoreErrors string is matched', function() {
+  it('should return false if ignoreErrors string is matched', function () {
     var options = {
       ignoreErrors: [
         'Engram is an Ascendant Energy'
@@ -41,7 +41,7 @@ describe('Filter Processor', function() {
     expect(filterProcessor.process(errInfo)).is.false();
   });
 
-  it('should return false if ignoreErrors regex is matched', function() {
+  it('should return false if ignoreErrors regex is matched', function () {
     var options = {
       ignoreErrors: [
         /Engram is an Ascendant \w+$/
@@ -52,7 +52,7 @@ describe('Filter Processor', function() {
     expect(filterProcessor.process(errInfo)).is.false();
   });
 
-  it('should return false if ignoreUrls string is matched', function() {
+  it('should return false if ignoreUrls string is matched', function () {
     var options = {
       ignoreUrls: [
         'decode-engram.js'
@@ -63,7 +63,7 @@ describe('Filter Processor', function() {
     expect(filterProcessor.process(errInfo)).is.false();
   });
 
-  it('should return false if ignoreUrls regex is matched', function() {
+  it('should return false if ignoreUrls regex is matched', function () {
     var options = {
       ignoreUrls: [
         /engram.js$/
@@ -74,7 +74,7 @@ describe('Filter Processor', function() {
     expect(filterProcessor.process(errInfo)).is.false();
   });
 
-  it('should not return false if none of ignoreErrors or ignoreUrls match', function() {
+  it('should not return false if none of ignoreErrors or ignoreUrls match', function () {
     var options = {
       ignoreUrls: [
         /test1.js$/,
@@ -92,7 +92,7 @@ describe('Filter Processor', function() {
     expect(filterProcessor.process(errInfo)).is.not.false();
   });
 
-  it('should return false if any ignoreUrls match', function() {
+  it('should return false if any ignoreUrls match', function () {
     var options = {
       ignoreUrls: [
         /test1.js$/,
@@ -112,7 +112,7 @@ describe('Filter Processor', function() {
     expect(filterProcessor.process(errInfo)).is.false();
   });
 
-  it('should return false if any ignoreErrors match', function() {
+  it('should return false if any ignoreErrors match', function () {
     var options = {
       ignoreUrls: [
         /test1.js$/,

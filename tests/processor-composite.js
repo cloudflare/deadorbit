@@ -7,8 +7,8 @@ function SampleProcessor() {
   this.process = sinon.stub();
 }
 
-describe('Composite Processor', function() {
-  it('should forward reports to component processor', function() {
+describe('Composite Processor', function () {
+  it('should forward reports to component processor', function () {
     var sampleReporter1 = new SampleProcessor();
     var sampleReporter2 = new SampleProcessor();
     var composite = new CompositeProcessor([sampleReporter1, sampleReporter2]);
@@ -25,7 +25,7 @@ describe('Composite Processor', function() {
     expect(sampleReporter2.process.firstCall.calledWithExactly(errInfo)).is.true();
   });
 
-  it('should not forward reports to second processor if the first returns false', function() {
+  it('should not forward reports to second processor if the first returns false', function () {
     var sampleReporter1 = new SampleProcessor();
     var sampleReporter2 = new SampleProcessor();
 

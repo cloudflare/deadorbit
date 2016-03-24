@@ -3,8 +3,8 @@ var uuid = require('uuid');
 var toISOString = require('../lib/toISOString');
 var xhr = require('../lib/xhr');
 var defined = require('defined');
-var map = require('array-map');
-var reduce = require('array-reduce');
+var map = require('lodash/map');
+var reduce = require('lodash/reduce');
 var version = '1.0.0';
 
 function SentryDriver(options) {
@@ -16,7 +16,7 @@ function SentryDriver(options) {
 
 var SentryDriverProto = SentryDriver.prototype;
 
-SentryDriverProto.getAuthHeader = function(date) {
+SentryDriverProto.getAuthHeader = function (date) {
   var auth = 'Sentry sentry_version=4, sentry_timestamp=' + date.getTime() + ', sentry_key=' + this.key + ', sentry_client=deadorbit/' + version;
 
   if (this.secret) {
@@ -32,11 +32,11 @@ SentryDriverProto.getAuthHeader = function(date) {
  * * "user" information about the current user (if set)
  * * "tags" array or object of application tags
  */
-SentryDriverProto.report = function(errInfo) {
+SentryDriverProto.report = function (errInfo) {
   var date = new Date();
   var id = uuid();
   var payload = {
-    event_id: id,
+    event_id: id, // eslint-disable-line camelcase
     timestamp: toISOString(date),
     level: 'error',
     logger: 'deadorbit',
@@ -49,12 +49,11 @@ SentryDriverProto.report = function(errInfo) {
   var message = errInfo.message;
 
   payload.culprit = firstFrame.functionName;
-  payload.message = lineNumber ? message + ' at ' + lineNumber : message + '';
+  payload.message = lineNumber ? message + ' at ' + lineNumber : String(message);
 
-
-  var stacks = map(errInfo.stacks.reverse(), function(stack) {
+  var stacks = map(errInfo.stacks.reverse(), function (stack) {
     var result = {
-      in_app: true
+      in_app: true // eslint-disable-line camelcase
     };
 
     if (stack.fileName) {
@@ -74,7 +73,7 @@ SentryDriverProto.report = function(errInfo) {
     }
 
     if (stack.args) {
-      result.vars = reduce(stack.args, function(acc, value, index) {
+      result.vars = reduce(stack.args, function (acc, value, index) {
         acc[index] = value;
         return acc;
       }, {});
